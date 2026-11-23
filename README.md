@@ -1,6 +1,10 @@
 # EscalationInsight
 
-Analyses escalation tickets, and reports which of its own trends are artifacts of choices.
+"This escalation category tripled in three months" sounds like a finding. It might be one. Or
+more people might have started reporting, a category might have been renamed, or late tickets
+might still be arriving for last month. EscalationInsight analyses escalation tickets for
+trends, and for every trend it reports, checks whether it could be an artifact of how the data
+was collected.
 
 ```bash
 ./setup.sh
@@ -12,7 +16,7 @@ Analyses escalation tickets, and reports which of its own trends are artifacts o
 
 ## The claim this refutes
 
-The brief's accuracy concern is *"correct pattern identification and categorization across
+The requirements note this project started from gives its accuracy concern as *"correct pattern identification and categorization across
 messy data"*, and its verdict is: **add an LLM normalization pass — send inconsistently
 categorized entries for canonical categorization, then run the pandas analysis on clean
 data.** The aspiration, in the project's own words, is to find *"this pattern is increasing 3x
