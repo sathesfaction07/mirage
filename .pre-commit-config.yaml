@@ -1,0 +1,64 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: [--fix]
+
+  - repo: local
+    hooks:
+      - id: corpus-still-produces-every-finding
+        name: the corpus still produces every finding the tests assert about
+        entry: python
+        language: system
+        pass_filenames: false
+        args:
+          - -c
+          - |
+            import sys
+            sys.path[:0] = ["src", "data"]
+            from pathlib import Path
+
+            from generate import MANIFEST_FILES
+            from escalation_insight.aggregate import payload, run
+            from escalation_insight.config import Settings
+            from escalation_insight.models import TicketFault
+
+            on_disk = {
+                p.name for p in Path("data").iterdir() if p.suffix in {".csv", ".json"}
+            }
+            assert on_disk == set(MANIFEST_FILES), f"corpus drift: {on_disk ^ set(MANIFEST_FILES)}"
+
+            analysis = run(Settings(data_dir=Path("data")))
+            result = payload(analysis)
+
+            # Every producer-fixable fault must still occur, or the gate tests go vacuous.
+            for fault in TicketFault:
+                assert fault.value in result["faults"], f"no {fault} in the corpus"
+
+            # The findings the README quotes must still hold.
+            assert result["tickets"] == 52
+            assert result["survives_every_reading"] == []
+            assert result["settings_decide_direction"] == ["delivery_timing", "returns"]
+            assert sorted(result["never_established"]) == ["misc", "packaging"]
+            assert result["deleted_by_a_revision"] == ["delivery_timing"]
+            assert result["uneven_dedup"] == ["returns"]
+            assert result["ranking_agrees"] is False
+            assert result["underpowered"] == ["packaging"]
+            assert result["history_rewrites"] == [{"from": "v1", "to": "v2", "buckets": 1}]
+            assert len(result["censored"]) == 2
+            assert {c["category"] for c in result["censored"]} == {
+                "delivery_timing", "returns"
+            }
+            assert result["readings_per_category"]["delivery_timing"] == 16, (
+                "8 readings must remain impossible under v3_split"
+            )
+            misc = next(s for s in analysis.sensitivities if s.category == "misc")
+            assert len(misc.comparable_choices) == 12, "the grain must still decide askability"
+            print(f"corpus ok: {result['tickets']} tickets, every fault and finding present")
+
+      - id: tests
+        name: tests
+        entry: python -m pytest -q
+        language: system
+        pass_filenames: false
