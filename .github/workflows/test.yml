@@ -300,16 +300,16 @@ jobs:
 
       - name: check gates on what the producer can fix, not on the world
         run: |
-          ! escalation-insight check
-          escalation-insight check | grep -q 'Fixable at the source'
-          escalation-insight check | grep -q 'FAIL on 5 producer-fixable defect(s)'
-          escalation-insight check | grep -q 'populate the event timestamp'
-          escalation-insight check | grep -q 'emit each id once'
-          escalation-insight check | grep -q 'Reported and NOT failed on'
-          escalation-insight check | grep -q 'Nobody can fix time'
-          escalation-insight check | grep -q 'configuring it is a judgement, not a defect'
-          escalation-insight check | grep -q 'Choosing a unit is not a defect'
-          escalation-insight check | grep -q 'teach people to stop running the check'
+          ! mirage check
+          mirage check | grep -q 'Fixable at the source'
+          mirage check | grep -q 'FAIL on 5 producer-fixable defect(s)'
+          mirage check | grep -q 'populate the event timestamp'
+          mirage check | grep -q 'emit each id once'
+          mirage check | grep -q 'Reported and NOT failed on'
+          mirage check | grep -q 'Nobody can fix time'
+          mirage check | grep -q 'configuring it is a judgement, not a defect'
+          mirage check | grep -q 'Choosing a unit is not a defect'
+          mirage check | grep -q 'teach people to stop running the check'
 
           # A clean export PASSES -- and still reports what it cannot establish.
           mkdir -p /tmp/clean
@@ -320,9 +320,9 @@ jobs:
           CSV
           printf '{"as_of": "2026-04-01", "versions": {"v2": {"description": "d", "categories": {"shipping delay": "delivery_timing"}}}}' > /tmp/clean/mappings.json
           printf '{"document": "d", "revision": 1, "covers": {"delivery_timing": "1.1"}, "questions": {"delivery_timing": 4}}' > /tmp/clean/sop.json
-          escalation-insight check --data-dir /tmp/clean
-          escalation-insight check --data-dir /tmp/clean | grep -q 'Nothing fixable at source'
-          escalation-insight check --data-dir /tmp/clean | grep -q 'cannot be read from this export'
+          mirage check --data-dir /tmp/clean
+          mirage check --data-dir /tmp/clean | grep -q 'Nothing fixable at source'
+          mirage check --data-dir /tmp/clean | grep -q 'cannot be read from this export'
 
           # ...and one wrong label alone is enough to FAIL.
           mkdir -p /tmp/badlabel
@@ -332,37 +332,37 @@ jobs:
           T-1,C-1,shipping delay,2026-01-05,2026-01-06,logistics,
           T-2,C-2,widget went bang,2026-02-05,2026-02-06,logistics,
           CSV
-          ! escalation-insight check --data-dir /tmp/badlabel
-          escalation-insight check --data-dir /tmp/badlabel | grep -q 'UNMAPPED_CATEGORY'
+          ! mirage check --data-dir /tmp/badlabel
+          mirage check --data-dir /tmp/badlabel | grep -q 'UNMAPPED_CATEGORY'
           echo "a short February does not gate; a broken row does"
 
       - name: Every command publishes its reasoning
         run: |
-          escalation-insight report | grep -q 'It is events x how many got reported'
-          escalation-insight report | grep -q 'newest bucket is EXCLUDED from every direction'
-          escalation-insight report | grep -q 'NOT evidence of a change'
-          escalation-insight trend | grep -q 'Nothing in the escalations chooses between them'
-          escalation-insight trend | grep -q 'revision that splits a category deletes it'
-          escalation-insight trend | grep -q 'not the same as the rate being flat'
-          escalation-insight evidence | grep -q 'Both of these are a 3x increase'
-          escalation-insight evidence | grep -q 'The verdict FLIPS'
-          escalation-insight evidence | grep -q 'finding none says nothing about the world'
-          escalation-insight mapping | grep -q 'A revised mapping is a retroactive edit'
-          escalation-insight mapping | grep -q 'categories that stop existing'
-          escalation-insight mapping | grep -q 'It is inside it'
-          escalation-insight unit | grep -q 'subtracts most from the period that went worst'
-          escalation-insight unit | grep -q 'DISTINCT UNDERLYING PROBLEM'
-          escalation-insight censoring | grep -q 'There is no third option'
-          escalation-insight censoring | grep -q 'not because anything improved'
-          escalation-insight gaps | grep -q 'adding a section makes this WORSE'
-          escalation-insight gaps | grep -q 'invisible by volume and prominent by rate'
-          escalation-insight doctor | grep -q 'Chosen, not measured'
-          escalation-insight doctor | grep -q 'Never measured, by anything here'
-          escalation-insight doctor | grep -q 'only how many were recorded'
-          escalation-insight doctor | grep -q 'alpha 0.05 is a convention'
-          escalation-insight explain returns | grep -q 'unit=TICKET grain=MONTH mapping=v2'
-          escalation-insight explain misc | grep -q 'fewer than two comparable buckets'
-          escalation-insight explain nonsense | grep -q "no category 'nonsense'"
+          mirage report | grep -q 'It is events x how many got reported'
+          mirage report | grep -q 'newest bucket is EXCLUDED from every direction'
+          mirage report | grep -q 'NOT evidence of a change'
+          mirage trend | grep -q 'Nothing in the escalations chooses between them'
+          mirage trend | grep -q 'revision that splits a category deletes it'
+          mirage trend | grep -q 'not the same as the rate being flat'
+          mirage evidence | grep -q 'Both of these are a 3x increase'
+          mirage evidence | grep -q 'The verdict FLIPS'
+          mirage evidence | grep -q 'finding none says nothing about the world'
+          mirage mapping | grep -q 'A revised mapping is a retroactive edit'
+          mirage mapping | grep -q 'categories that stop existing'
+          mirage mapping | grep -q 'It is inside it'
+          mirage unit | grep -q 'subtracts most from the period that went worst'
+          mirage unit | grep -q 'DISTINCT UNDERLYING PROBLEM'
+          mirage censoring | grep -q 'There is no third option'
+          mirage censoring | grep -q 'not because anything improved'
+          mirage gaps | grep -q 'adding a section makes this WORSE'
+          mirage gaps | grep -q 'invisible by volume and prominent by rate'
+          mirage doctor | grep -q 'Chosen, not measured'
+          mirage doctor | grep -q 'Never measured, by anything here'
+          mirage doctor | grep -q 'only how many were recorded'
+          mirage doctor | grep -q 'alpha 0.05 is a convention'
+          mirage explain returns | grep -q 'unit=TICKET grain=MONTH mapping=v2'
+          mirage explain misc | grep -q 'fewer than two comparable buckets'
+          mirage explain nonsense | grep -q "no category 'nonsense'"
           echo "all commands explain themselves"
 
   test-windows:

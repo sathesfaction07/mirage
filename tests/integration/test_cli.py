@@ -121,7 +121,7 @@ class TestMapping:
     def test_it_credits_the_project_that_already_built_the_label_map(self):
         from escalation_insight import mapping
 
-        assert "StatusChecker" in mapping.__doc__
+        assert "Vintage" in mapping.__doc__
         assert "PER MARKETPLACE" in mapping.__doc__
 
 
@@ -147,7 +147,7 @@ class TestUnit:
     def test_the_module_credits_the_projects_that_own_dedup(self):
         from escalation_insight import units
 
-        assert "CaseSearch" in units.__doc__ and "MultiSourceAgg" in units.__doc__
+        assert "Kinship" in units.__doc__ and "Denominator" in units.__doc__
 
 
 class TestCensoring:
@@ -170,7 +170,7 @@ class TestCensoring:
     def test_the_module_credits_rule_monitor(self):
         from escalation_insight import buckets
 
-        assert "RuleMonitor" in buckets.__doc__
+        assert "Plimsoll" in buckets.__doc__
         assert "breakdown point" in buckets.__doc__
 
 

@@ -1,15 +1,15 @@
-# EscalationInsight
+# Mirage
 
 "This escalation category tripled in three months" sounds like a finding. It might be one. Or
 more people might have started reporting, a category might have been renamed, or late tickets
-might still be arriving for last month. EscalationInsight analyses escalation tickets for
+might still be arriving for last month. Mirage analyses escalation tickets for
 trends, and for every trend it reports, checks whether it could be an artifact of how the data
 was collected.
 
 ```bash
 ./setup.sh
-.venv/bin/escalation-insight report
-.venv/bin/escalation-insight check     # exits 1 on this corpus, deliberately
+.venv/bin/mirage report
+.venv/bin/mirage check     # exits 1 on this corpus, deliberately
 ```
 
 ---
@@ -45,12 +45,12 @@ need. Two of them already existed, and both are what the brief recommends:
 
 | Already built | Where | So the angle here is |
 |:--|:--|:--|
-| Raw label → canonical category, **per marketplace**, with conflict detection and coverage gaps | **StatusChecker** `labels.py` | not building a `LabelMap` — asking what a mapping does to a **count over time** |
-| Bucketed `Series`, rolling baselines, missing periods, robust stats (argument: **breakdown point**) | **RuleMonitor** `series.py` / `stats.py` | it starts from an `Observation` that already knows its period. Everything here is the step **before** that |
-| Categorization confidence and calibration | AIClassifier | not classification quality |
-| The deduplication ceiling | CaseSearch | dedup's effect on a trend's **direction** |
-| Identity decides a static count | MultiSourceAgg | the **unit** decides a direction |
-| matplotlib charts | AIClassifier, LifecycleTracker | **charts dropped** — a repeat that changes no conclusion |
+| Raw label → canonical category, **per marketplace**, with conflict detection and coverage gaps | **Vintage** `labels.py` | not building a `LabelMap` — asking what a mapping does to a **count over time** |
+| Bucketed `Series`, rolling baselines, missing periods, robust stats (argument: **breakdown point**) | **Plimsoll** `series.py` / `stats.py` | it starts from an `Observation` that already knows its period. Everything here is the step **before** that |
+| Categorization confidence and calibration | Plumbline | not classification quality |
+| The deduplication ceiling | Kinship | dedup's effect on a trend's **direction** |
+| Identity decides a static count | Denominator | the **unit** decides a direction |
+| matplotlib charts | Plumbline, Meridian | **charts dropped** — a repeat that changes no conclusion |
 
 Verified genuinely absent portfolio-wide: `slope`/regression **0 files**, `binomial` /
 `p_value` / `math.comb` **0**, confidence intervals **0**, censoring **0**, partial-period

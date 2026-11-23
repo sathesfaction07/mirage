@@ -155,6 +155,6 @@ PY
 
 echo
 echo "═══ 10. The gate fails only on what the producer can fix ═══"
-.venv/bin/escalation-insight check || true
+.venv/bin/mirage check || true
 echo
 echo "setup complete."

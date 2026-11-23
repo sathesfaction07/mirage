@@ -1,6 +1,6 @@
 """Free-text label -> canonical category, under a VERSION, because the mapping changes.
 
-StatusChecker already builds the thing the brief asks for. Its `LabelMap` maps a raw label to
+Vintage already builds the thing the brief asks for. Its `LabelMap` maps a raw label to
 a canonical status PER MARKETPLACE, detects conflicts between marketplaces, and reports which
 statuses each marketplace fails to cover -- which is most of "send inconsistent categories for
 canonical categorisation", already done, and better than a fresh attempt here would be.

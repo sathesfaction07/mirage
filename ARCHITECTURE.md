@@ -35,13 +35,13 @@ Each stage is a decision that changes the number, and none of them is recoverabl
 Two projects here already own most of what the brief recommends, and both are credited in the
 module docstrings rather than quietly re-implemented.
 
-**StatusChecker** `labels.py` maps a raw label to a canonical status *per marketplace*, finds
+**Vintage** `labels.py` maps a raw label to a canonical status *per marketplace*, finds
 conflicts between marketplaces, and reports coverage gaps. That is the normalization pass,
 already built, with the regional dimension the brief names as its worst input. `mapping.py`
 does not compete with it; it asks the question nobody asks it — *what does a mapping do to a
 count over time?*
 
-**RuleMonitor** `series.py` / `stats.py` owns bucketed series, rolling baselines, missing
+**Plimsoll** `series.py` / `stats.py` owns bucketed series, rolling baselines, missing
 periods, and robust estimators, with breakdown point as its argument. It starts from an
 `Observation` that already knows its period. `buckets.py` is entirely about the step before
 that: **how a ticket becomes an observation in a period at all.** By the time a well-formed
@@ -121,7 +121,7 @@ The generator **owns** `data/` and prunes anything it did not write.
 ## What is deliberately absent
 
 - **No model and no network.** The findings are arithmetic and the calendar.
-- **No charts.** AIClassifier and LifecycleTracker already have matplotlib output, and a chart
+- **No charts.** Plumbline and Meridian already have matplotlib output, and a chart
   changes none of the conclusions — it mostly makes an unqualified number easier to quote.
 - **No pandas.** The grouping here is a `Counter`; pandas would add a dependency and hide the
   bucketing decisions this project exists to expose.

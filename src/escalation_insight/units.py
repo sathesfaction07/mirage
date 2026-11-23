@@ -1,6 +1,6 @@
 """Deciding what one counted thing IS, and what deduplication costs when you decide.
 
-CaseSearch owns the deduplication ceiling in this portfolio and MultiSourceAgg owns the
+Kinship owns the deduplication ceiling in this portfolio and Denominator owns the
 result that a static count is a function of the identity key. Neither is repeated here. The
 new part is temporal and it is sharper: collapsing tickets into cases does not remove rows
 evenly across time, so it changes the DIRECTION of a trend, and it removes the most from

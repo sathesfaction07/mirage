@@ -1,11 +1,11 @@
 """Placing an escalation in a period, which is where most of the loss happens.
 
-RuleMonitor already owns time series in this portfolio: `Series` with periods, missing
+Plimsoll already owns time series in this portfolio: `Series` with periods, missing
 periods, rolling baselines, and a `stats` module whose argument is breakdown point -- robust
 versus non-robust estimators for anomaly detection. This module does not compete with it and
 does not repeat it.
 
-The difference is where the two start. RuleMonitor starts from an `Observation` that already
+The difference is where the two start. Plimsoll starts from an `Observation` that already
 knows which period it belongs to. Everything here is about the step BEFORE that: how a
 ticket becomes an observation in a period at all, and what the choice of period does to the
 number. By the time you have a well-formed series, the interesting damage is done.
