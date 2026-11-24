@@ -18,8 +18,8 @@ Probed exactly, over periods of equal length:
 
 Both are "3x". Both produce the identical sentence in a status update.
 
-The portfolio had no machinery for this: `binomial`, `p_value`, `math.comb`, `linregress` and
-confidence intervals were **zero files** across 26 projects. And an approximation would not
+None of the sibling projects had machinery for this: `binomial`, `p_value`, `math.comb`, `linregress` and
+confidence intervals were **zero files** across the sibling projects. And an approximation would not
 have done, because the entire difficulty is that n is small — a normal approximation is least
 trustworthy exactly where the question matters.
 
@@ -72,7 +72,7 @@ constant rate produce this" and not "should we staff for it".
 
 ## Alternatives
 
-**Report the ratio alone.** The status quo, and the reason the phrase in the brief survives
+**Report the ratio alone.** The status quo, and the reason the phrase in the project brief survives
 being computed from 1 and 3.
 
 **Normal approximation or chi-squared.** Cheaper, standard, and wrong at the sample sizes where

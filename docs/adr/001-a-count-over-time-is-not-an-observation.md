@@ -5,7 +5,7 @@
 
 ## Context
 
-The brief wants *"this pattern is increasing 3x over 3 months and affects 4 teams"* and treats
+The project brief wants *"this pattern is increasing 3x over 3 months and affects 4 teams"* and treats
 inconsistent categorisation as the obstacle, to be removed by an LLM normalisation pre-pass
 before a pandas analysis.
 
@@ -49,7 +49,7 @@ survives every reading, **2** have their direction decided by the settings, and 
 tested under every reading and never convinced. A report that picked one configuration would
 have published two trends.
 
-**Good.** It caught a case the brief's framing hides entirely. `v3_split` **deletes**
+**Good.** It caught a case the project brief's framing hides entirely. `v3_split` **deletes**
 `delivery_timing`, so 8 of its 24 readings cannot be run — its trend line does not fall, it
 disappears. Reported rather than skipped, after an earlier version skipped it silently.
 

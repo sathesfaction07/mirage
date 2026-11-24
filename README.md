@@ -38,10 +38,10 @@ the line in exactly the same way.** The normalization pass does not remove that 
 *is* the third term, and it is the one that gets revised by a human on a Tuesday and applied
 backwards over months that were already published.
 
-## What the diligence check found — it narrowed the pitch
+## What a survey of the sibling projects found — it narrowed the pitch
 
-Before writing anything, the portfolio was searched for the mechanisms this project would
-need. Two of them already existed, and both are what the brief recommends:
+Before writing anything, the sibling projects were searched for the mechanisms this project would
+need. Two of them already existed, and both are what the project brief recommends:
 
 | Already built | Where | So the angle here is |
 |:--|:--|:--|
@@ -52,7 +52,7 @@ need. Two of them already existed, and both are what the brief recommends:
 | Identity decides a static count | Denominator | the **unit** decides a direction |
 | matplotlib charts | Plumbline, Meridian | **charts dropped** — a repeat that changes no conclusion |
 
-Verified genuinely absent portfolio-wide: `slope`/regression **0 files**, `binomial` /
+Verified genuinely absent from every sibling project: `slope`/regression **0 files**, `binomial` /
 `p_value` / `math.comb` **0**, confidence intervals **0**, censoring **0**, partial-period
 **0**, Simpson's paradox **0**, ratio-with-evidence **0**.
 
@@ -76,7 +76,7 @@ Two increases, both exactly 3x, over periods of equal length:
 
 Same ratio, same sentence in a status update, evidence differing by nine orders of magnitude.
 **A ratio divides out the count, which is the only thing carrying the evidence** — so the
-phrase in the brief's own aspiration survives being computed from numbers that mean nothing.
+phrase in the project brief's own aspiration survives being computed from numbers that mean nothing.
 
 The test is exact, via `math.comb`: under a constant rate, each escalation lands in the later
 period with probability equal to that period's share of the exposure, so the later count is
@@ -214,7 +214,7 @@ searched for, or whether they found the section and disbelieved it.
 
 On this corpus the top topic by both measures is `returns` — **41 questions on a topic the SOP
 documents at section 4.2.** So the one cause a new section would fix is precisely the one
-already ruled out for the biggest number in the report, and the recommendation the brief asks
+already ruled out for the biggest number in the report, and the recommendation the project brief asks
 for would make the most likely remaining cause worse.
 
 Being undocumented rules out *nothing*, either: it does not follow that the absence is why

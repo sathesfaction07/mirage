@@ -2,7 +2,7 @@
 
 ## The shape of the problem
 
-The brief asks for pattern identification over messy escalation data and prescribes an LLM
+The project brief asks for pattern identification over messy escalation data and prescribes an LLM
 normalization pre-pass to clean it first. The module layout is the argument that there is no
 "first": normalization is a term in the analysis, not a step before it.
 
@@ -32,12 +32,12 @@ Each stage is a decision that changes the number, and none of them is recoverabl
 
 ## Where this sits next to what already exists
 
-Two projects here already own most of what the brief recommends, and both are credited in the
+Two projects here already own most of what the project brief recommends, and both are credited in the
 module docstrings rather than quietly re-implemented.
 
 **Vintage** `labels.py` maps a raw label to a canonical status *per marketplace*, finds
 conflicts between marketplaces, and reports coverage gaps. That is the normalization pass,
-already built, with the regional dimension the brief names as its worst input. `mapping.py`
+already built, with the regional dimension the project brief names as its worst input. `mapping.py`
 does not compete with it; it asks the question nobody asks it — *what does a mapping do to a
 count over time?*
 
@@ -127,5 +127,5 @@ The generator **owns** `data/` and prunes anything it did not write.
   bucketing decisions this project exists to expose.
 - **No third unit.** "One distinct underlying problem" is what everybody means and no export
   can produce it. Implementing it would mean inventing it.
-- **No recommendation generator.** The brief asks for one. Section 8 of the README is why the
+- **No recommendation generator.** The project brief asks for one. Section 8 of the README is why the
   inference it would rest on does not go through.
